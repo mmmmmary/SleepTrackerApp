@@ -11,7 +11,17 @@
 
 <ion-content class="ion-padding">
   <!-- Tu contenido aquí -->
-  <div class="calendar-container">
-    <h2>{{ currentDate | date: 'fullDate' }}</h2>
-  </div>
+  <!-- Calendario Semanal con Ionic Grid -->
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let day of currentWeekDays; let i = index" [ngClass]="{'current-day': isToday(i)}" size="1">
+        <div class="day-container">{{ day }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Botón "Start Tracking" -->
+  <ion-button expand="block" (click)="startTracking()">
+    Start Tracking
+  </ion-button>
 </ion-content>

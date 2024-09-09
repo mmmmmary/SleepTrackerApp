@@ -1,15 +1,31 @@
-ion-header {
-    --background: #fff;
-    --border-color: #ddd;
+.week-calendar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+  }
+  
+  .day-container {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .current-day {
+    background-color: #E6BA95;
+    color: white;
+    font-weight: bold;
   }
   
   ion-button {
-    --padding-start: 0;
-    --padding-end: 0;
-  }
-  
-  ion-icon {
-    font-size: 24px;
-    color: #000; /* Cambia el color del ícono según tu diseño */
+    margin-top: 20px;
   }
   
