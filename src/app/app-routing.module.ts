@@ -14,15 +14,22 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
-  },  {
-    path: 'fogotpassword',
-    loadChildren: () => import('./fogotpassword/fogotpassword.module').then( m => m.FogotpasswordPageModule)
   },
   {
     path: 'loginscreen',
     loadChildren: () => import('./loginscreen/loginscreen.module').then( m => m.LoginscreenPageModule)
-  }
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
 
+
+  
 ];
 
 
