@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FogotpasswordPageRoutingModule } from './fogotpassword-routing.module';
+import { SignupPageRoutingModule } from './signup-routing.module';
 
-import { FogotpasswordPage } from './fogotpassword.page';
+import { SignupPage } from './signup.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FogotpasswordPageRoutingModule
+    SignupPageRoutingModule
   ],
-  declarations: [FogotpasswordPage]
+  declarations: [SignupPage]
 })
-export class FogotpasswordPageModule {}
+export class SignupPageModule {}
