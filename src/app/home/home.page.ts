@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';  // Importar Storage
 
 @Component({
   selector: 'app-home',
@@ -8,14 +9,19 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  // Días de la semana actual (números del mes)
-  currentWeekDays: number[] = [];
-
+  currentWeekDays: number[] = []; // Días de la semana actual (números del mes)
   today: number = new Date().getDay();  // Día de la semana actual (0 es Sunday, 6 es Saturday)
   currentDate: Date = new Date();  // Fecha actual
+  username: string = '';  // Variable para almacenar el nombre de usuario
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private storage: Storage) {
     this.generateCurrentWeekDays();
+    this.loadUsername();  // Cargar el nombre de usuario desde el almacenamiento
+  }
+
+  // Función para cargar el nombre de usuario desde el almacenamiento
+  async loadUsername() {
+    this.username = await this.storage.get('username') || 'Guest';  // Si no se encuentra, se asigna 'Guest'
   }
 
   // Función para generar los números de los días del mes correspondientes a la semana actual
