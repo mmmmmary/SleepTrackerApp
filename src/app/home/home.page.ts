@@ -13,6 +13,10 @@ export class HomePage {
   today: number = new Date().getDay();  // Día de la semana actual (0 es Sunday, 6 es Saturday)
   currentDate: Date = new Date();  // Fecha actual
   username: string = '';  // Variable para almacenar el nombre de usuario
+  
+  trackingTime: Date | null = null;  // Variable para la hora de seguimiento
+  alarmTime: string | null = null;   // Variable para la hora de la alarma
+  trackingStarted: boolean = false;  // Flag para saber si el seguimiento ha comenzado
 
   constructor(private router: Router, private storage: Storage) {
     this.generateCurrentWeekDays();
@@ -51,8 +55,24 @@ export class HomePage {
     this.router.navigate(['/login']);
   }
 
-  // Acción temporal para el botón de "Start Tracking"
+  // Navegación a la página de perfil
+  goToPerfil() {
+    this.router.navigate(['/perfil']);
+  }
+
+  // Acción para el botón de "Start Tracking"
   startTracking() {
-    console.log('Tracking started');
+    this.trackingStarted = true;  // Mostrar el formulario
+    this.trackingTime = new Date();  // Guardar la hora actual
+    console.log('Tracking started at:', this.trackingTime);
+  }
+
+  // Guardar la alarma y la hora de seguimiento
+  async saveAlarm() {
+    if (this.alarmTime) {
+      console.log('Alarm set for:', this.alarmTime);
+      await this.storage.set('alarmTime', this.alarmTime);  // Guardar la hora de la alarma en el almacenamiento
+    }
   }
 }
+
