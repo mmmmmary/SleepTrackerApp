@@ -1,32 +1,31 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Perfil</ion-title>
-    
   </ion-toolbar>
-  
-  <ion-button expand="block" fill="outline" shape="round" (click)="goToHome()">
-    Back to Home
-  </ion-button>
-  
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-label>Foto de Perfil</ion-label>
-    <ion-avatar slot="end" (click)="selectImage()">
-      <img [src]="profileImage" />
-    </ion-avatar>
+    <ion-label position="stacked">Nombre de Usuario</ion-label>
+    <ion-input [(ngModel)]="username"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Nombre de Usuario</ion-label>
-    <ion-input [(ngModel)]="username" type="text"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Correo Electrónico</ion-label>
+    <ion-label position="stacked">Correo Electrónico</ion-label>
     <ion-input [(ngModel)]="email" type="email"></ion-input>
   </ion-item>
 
-  <ion-button expand="full" (click)="saveProfile()">Guardar Cambios</ion-button>
+  <!-- Imagen de perfil -->
+  <div class="profile-image-container">
+    <img [src]="profileImage" alt="Profile Image" class="profile-image" />
+  </div>
+  <ion-button (click)="selectImage()">
+    <ion-icon name="camera-outline"></ion-icon>
+  </ion-button>
+
+  <!-- Input de tipo file para seleccionar una imagen -->
+  <input type="file" id="imageInput" (change)="onImageSelected($event)" hidden>
+
+  <ion-button expand="block" (click)="saveProfile()">Guardar Cambios</ion-button>
+  <ion-button expand="block" (click)="goToHome()">Ir a Home</ion-button>
 </ion-content>

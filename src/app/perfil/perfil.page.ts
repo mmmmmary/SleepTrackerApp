@@ -8,16 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  username!: string;  // Usar el operador de afirmación de no nulo
-  email!: string;     // Usar el operador de afirmación de no nulo
-  profileImage!: string; // Usar el operador de afirmación de no nulo
+  username!: string;
+  email!: string;
+  profileImage!: string;
 
   constructor(private storage: Storage, private router: Router) {
     this.initializeStorage();
   }
 
   async ngOnInit() {
-    // Cargar datos del usuario al iniciar el componente
     this.loadUserData();
   }
 
@@ -26,25 +25,37 @@ export class PerfilPage implements OnInit {
   }
 
   async loadUserData() {
-    // Cargar el nombre de usuario y el correo desde el almacenamiento
     this.username = await this.storage.get('username') || '';
     this.email = await this.storage.get('email') || '';
-    // Cargar la imagen de perfil si está disponible
-    this.profileImage = await this.storage.get('profileImage') || 'path/a/imagen/por/defecto.jpg';
+    this.profileImage = await this.storage.get('profileImage') || 'assets/default-profile.png';  // Ruta a una imagen por defecto
   }
 
   async saveProfile() {
-    // Guardar el nombre de usuario y el correo en el almacenamiento
     await this.storage.set('username', this.username);
     await this.storage.set('email', this.email);
-    // Aquí puedes agregar la lógica para guardar la imagen de perfil si es necesario
-    console.log('Datos guardados:', { username: this.username, email: this.email });
+    await this.storage.set('profileImage', this.profileImage);  // Guardar la imagen de perfil
+    console.log('Datos guardados:', { username: this.username, email: this.email, profileImage: this.profileImage });
   }
 
-  async selectImage() {
-    // Lógica para seleccionar una imagen (puedes usar el plugin que instalaste anteriormente)
+  selectImage() {
+    // Simular un clic en el input de tipo file
+    const fileInput = document.getElementById('imageInput') as HTMLInputElement;
+    fileInput.click();
   }
+
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.profileImage = e.target.result;  // Actualizar la imagen de perfil con el archivo seleccionado
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   goToHome() {
-    this.router.navigate(['/home']);  // Navega a la página Home
+    this.router.navigate(['/home']);
   }
 }
+
