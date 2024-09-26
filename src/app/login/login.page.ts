@@ -21,4 +21,8 @@ export class LoginPage implements OnInit {
   goToLoginscreen() {
     this.router.navigate(['/loginscreen']);  // Navega a la página Home
   }
+  // Método para navegar a Createaccunt
+  goToCreateaccount() {
+    this.router.navigate(['/createaccount']);  // Navega a la página Home
+  }
 }

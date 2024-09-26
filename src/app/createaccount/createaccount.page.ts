@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular'; // Importar Storage
 
 @Component({
-  selector: 'app-loginscreen',
-  templateUrl: './loginscreen.page.html',
-  styleUrls: ['./loginscreen.page.scss'],
+  selector: 'app-createaccount',
+  templateUrl: './createaccount.page.html',
+  styleUrls: ['./createaccount.page.scss'],
 })
-export class LoginscreenPage {
+export class CreateaccountPage {
   email: string;
   password: string;
   username: string;
@@ -65,13 +65,9 @@ export class LoginscreenPage {
     }
   }
 
-  goToForgotpassword() {
-    this.router.navigate(['/forgotpassword']);  // Navega a la página Home
+  onForgotPassword() {
+    // Lógica para manejar la recuperación de contraseña
+    console.log('Forgot Password clicked');
   }
-
-  goToCreateaccount() {
-    this.router.navigate(['/createaccount']);  // Navega a la página Home
-  }
-  
 }
 
