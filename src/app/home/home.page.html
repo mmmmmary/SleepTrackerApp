@@ -2,8 +2,14 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-buttons slot="end">
+      <!-- Botón de login -->
       <ion-button (click)="goToLogin()">
         <ion-icon name="log-in-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Botón de perfil -->
+      <ion-button (click)="goToPerfil()">
+        <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,4 +30,22 @@
   <ion-button expand="block" (click)="startTracking()">
     Start Tracking
   </ion-button>
+
+  <!-- Formulario que se muestra cuando el seguimiento ha comenzado -->
+  <div *ngIf="trackingStarted">
+    <ion-item>
+      <ion-label>Tracking started at:</ion-label>
+      <ion-note>{{ trackingTime | date:'shortTime' }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Set Alarm</ion-label>
+      <ion-input type="time" [(ngModel)]="alarmTime"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="saveAlarm()">
+      Accept
+    </ion-button>
+  </div>
+
 </ion-content>
